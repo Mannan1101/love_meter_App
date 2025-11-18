@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Meter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Love Meter</h1>
+        <div class="input-group">
+            <label for="name1">Your Name</label>
+            <input type="text" id="name1" placeholder="Enter your name">
+        </div>
+        <div class="input-group">
+            <label for="name2">Partner's Name</label>
+            <input type="text" id="name2" placeholder="Enter partner's name">
+        </div>
+        <button id="calculate-btn">Calculate Love</button>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="result"></p>
+        <p id="quote" class="quote"></p>
+    </div>
+    <script>
+        const calculateBtn = document.getElementById('calculate-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const resultText = document.getElementById('result');
+        const quoteText = document.getElementById('quote');
+        const name1Input = document.getElementById('name1');
+        const name2Input = document.getElementById('name2');
+
+        calculateBtn.addEventListener('click', () => {
+            const name1 = name1Input.value.trim();
+            const name2 = name2Input.value.trim();
+
+            if (name1 === '' || name2 === '') {
+                alert('Please enter both names.');
+                return;
+            }
+
+            const lovePercentage = Math.floor(Math.random() * 101);
+            let quote = '';
+
+            if (lovePercentage <= 20) {
+                quote = "Maybe just friends?";
+            } else if (lovePercentage <= 40) {
+                quote = "A little spark is there.";
+            } else if (lovePercentage <= 60) {
+                quote = "There's potential!";
+            } else if (lovePercentage <= 80) {
+                quote = "A strong connection!";
+            } else {
+                quote = "True love!";
+            }
+            
+            progressBar.style.width = lovePercentage + '%';
+            resultText.textContent = `Your love is ${lovePercentage}%`;
+            quoteText.textContent = `"${quote}"`;
+        });
+    </script>
+</body>
+</html>
